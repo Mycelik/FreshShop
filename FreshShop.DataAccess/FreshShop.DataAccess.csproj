@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F5E39FF1-9AFA-461A-A834-851ACF16F951}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FreshShop.DataAccess</RootNamespace>
+    <AssemblyName>FreshShop.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractStructure\ICategoryRepository.cs" />
+    <Compile Include="AbstractStructure\ICustomerRepository.cs" />
+    <Compile Include="AbstractStructure\IProductCommentRepository.cs" />
+    <Compile Include="AbstractStructure\IProductPhotoRepository.cs" />
+    <Compile Include="AbstractStructure\IProductRepository.cs" />
+    <Compile Include="AbstractStructure\IRoleRepository.cs" />
+    <Compile Include="AbstractStructure\IUserRepository.cs" />
+    <Compile Include="AdoNet\AdoNetUserRepository.cs" />
+    <Compile Include="EntityFramework\Mapping\CategoryMap.cs" />
+    <Compile Include="EntityFramework\Mapping\CustomerMap.cs" />
+    <Compile Include="EntityFramework\Mapping\ProductCommentMap.cs" />
+    <Compile Include="EntityFramework\Mapping\ProductMap.cs" />
+    <Compile Include="EntityFramework\Mapping\ProductPhotoMap.cs" />
+    <Compile Include="EntityFramework\Mapping\RoleMap.cs" />
+    <Compile Include="EntityFramework\Mapping\UserMap.cs" />
+    <Compile Include="EntityFramework\Context\FreshShopDbContext.cs" />
+    <Compile Include="EntityFramework\Repositories\EfCategoryRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\EfCustomerRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\EfProductCommentRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\EfProductPhotoRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\EfProductRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\EfRoleRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\EfUserRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NHibernate\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FreshShop.Model\FreshShop.Model.csproj">
+      <Project>{2835f663-647b-48ae-9d85-7a8b7a48edba}</Project>
+      <Name>FreshShop.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfraStructure\InfraStructure.csproj">
+      <Project>{8ffa0e4d-ea11-441e-8bae-baafe2f308b8}</Project>
+      <Name>InfraStructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

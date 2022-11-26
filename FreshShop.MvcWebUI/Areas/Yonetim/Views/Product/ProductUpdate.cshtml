@@ -1,0 +1,59 @@
+﻿@using FreshShop.Model.Domain;
+@{
+    ViewBag.Title = "ProductUpdate";
+    Layout = "~/Areas/Yonetim/Views/Shared/_Layout.cshtml";
+}
+
+@model  Product
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Ürün Güncelleme Ekranı</h3>
+            </div>
+            <form id="frmUpdateProduct" role="form">
+                <div class="card-body">
+                    <input type="hidden" id=txtProductId value="@Model.Id"  />
+                    <div class="form-group">
+                        <label>Ürün Adı</label>
+                        <input type="text" value="@Model.ProductName" class="form-control" id="txtProductName" placeholder="Ürün Adı">
+                    </div>
+                    <div class="form-group">
+                        <label>Ürün Fiyatı</label>
+                        <input type="text" value="@Model.UnitPrice" class="form-control" id="txtUnitPrice" placeholder="Ürün Fiyatı">
+                    </div>
+
+                    <div id="divDiscount" class="form-group">
+                        <label>İndirim Oranı(%)</label>
+                        <input type="text" value="@Model.Discount" class="form-control" id="txtDiscount" placeholder="İndirim Oranı">
+                    </div>
+                    <div class="form-group">
+                        <label>Ürün Açıklaması</label>
+                        <textarea id="txtDescription" value="@Model.Description" placeholder="Ürün Açıklaması"
+                                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <input id="btnUpdate" type="button" class="btn btn-primary btnpDüzenle" value="Güncelleştir" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section styles{
+
+    <link href="~/Areas/Yonetim/Content/plugins/summernote/summernote-bs4.min.css" rel="stylesheet" />
+    <link href="~/Areas/Yonetim/Content/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/Areas/Yonetim/Content/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Areas/Yonetim/Content/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/Areas/Yonetim/Scripts/Product/ProductUpdate.js"></script>
+}
+

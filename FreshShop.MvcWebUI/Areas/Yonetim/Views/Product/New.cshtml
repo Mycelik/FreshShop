@@ -1,0 +1,76 @@
+﻿@using FreshShop.Model.ComplexTypes.Yonetim.Product
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Areas/Yonetim/Views/Shared/_Layout.cshtml";
+}
+
+
+@model NewProductVm
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Yönetici Kayıt Formu</h3>
+            </div>
+            <form id="frmNewProduct" role="form">
+                <div class="card-body">
+
+                    <div id="divMainCategories" class="form-group">
+                        <label>Kategorisi</label>
+                        @Html.DropDownList("ddlCategories", Model.MainCategories, "Seçiniz...", new { id = "ddlCategories", @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ürün Adı</label>
+                        <input type="text" class="form-control" id="txtProductName" placeholder="Ürün Adı">
+
+                    </div>
+                    <div class="form-group">
+                        <label>Fiyat</label>
+                        <input type="text" class="form-control" id="txtUnitPrice" placeholder="Fiyat">
+                    </div>
+                    <div class="form-group">
+                        <label>İndirim</label><br />
+                        <input type="checkbox" id="chkDiscount"> VAR
+                    </div>
+                    <div id="divDiscount" class="form-group" style="display:none;">
+                        <label>İndirim Oranı(%)</label>
+                        <input type="text" class="form-control" id="txtDiscount" placeholder="İndirim Oranı">
+                    </div>
+                    <div class="form-group">
+                        <label>Açıklama</label>
+                        <textarea id="txtDescription" placeholder="Ürün Açıklaması"
+                                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Fotoğrafları</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fuPhoto" multiple>
+                                <label class="custom-file-label">Fotoğraf Seçiniz</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button id="btnSave" type="button" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section styles{
+
+    <link href="~/Areas/Yonetim/Content/plugins/summernote/summernote-bs4.min.css" rel="stylesheet" />
+    <link href="~/Areas/Yonetim/Content/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/Areas/Yonetim/Content/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Areas/Yonetim/Content/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/Areas/Yonetim/Scripts/Product/New.js"></script>
+}
